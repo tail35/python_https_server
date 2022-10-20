@@ -1,0 +1,15 @@
+
+http:
+
+server.py
+python server.py 8082
+python -m server.py 8082   如果server.py 被放入了lib/http安装目录下的话
+http://127.0.0.1:8082
+
+------------------------
+https:
+myssl.py 注意不能命名为ssl.py 不让会报出ssl 无ssl_wrap错误。
+python -m myssl.py
+python -m http.myssl   如果myssl 放入lib/http的话。
+
+https://my1.cow8.cn:1443

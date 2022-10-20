@@ -1,0 +1,68 @@
+<!Document>
+<html>
+    <head>
+        <title>jscamera</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class="idvideo">
+            <video class="myvideo"></video>
+        </div>
+        
+
+    </body>
+    <style>
+        .idvideo{
+            /* padding: 2px; */
+            /* border: 1px solid green; */
+        }
+        .myvideo{
+            width: 360px;
+            height: 203px;
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+        async function MyDevices(){
+
+            navigator.mediaDevices.getUserMedia( {video:true, audio:true})
+            .then(stream => 
+                navigator.mediaDevices.enumerateDevices().then(devices => {
+                    return devices
+                }).catch(err => {throw err})
+            )
+            .then(devices => {
+                console.log(devices);
+                for (const mediaDeviceInfo of devices) {
+                    const {deviceId, kind, label} = mediaDeviceInfo;
+                    console.log(deviceId, kind, label);
+                }
+            })
+            .catch(err => console.error(err))
+
+            // const devices = await navigator.mediaDevices.enumerateDevices();
+            // for (const device of devices)
+            // {	//dhlu start
+            //     var obj=[ {"kind":device.kind},{"id":device.deviceId},{"label":device.label} ]
+            //     console.table(obj)
+            //     //if (device.kind !== 'videoinput')			
+            //     //    continue;                    
+            // }
+        //   //列出相机和麦克风。
+        //   navigator.mediaDevices.enumerateDevices()
+        //   .then(function(devices) {
+        //     devices.forEach(function(device) {
+        //      //console.log(device.getCapabilities()); 
+        //      console.log(device)
+        //       //console.log(device.kind + ": " + device.label +" id = " + device.deviceId);
+        //     });
+        //   }).catch(function(err) {
+        //      console.log(err.name + ": " + err.message);
+        //   });
+        }
+        window.onload=function(){            
+
+            MyDevices()
+        }
+    </script>
+</html>
